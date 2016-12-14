@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #define GRAPH "\033(0\033%@"
 #define NOGRAPH "\033(B"
 

@@ -1,10 +1,23 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "image.h"
 
-main()
-{   struct IMG ImgTest1/*, ImgTest2*/ ;
-    lireFichier("ex2.pbm", & ImgTest1 ) ;
-    //lireFichier("ex3.pbm", & ImgTest2 ) ;
+ int main(int argc, char* argv[])
+{
+    struct winsize w;
+    ioctl(0, TIOCGWINSZ, &w);
+
+    struct IMG ImgTest1 ;
+    lireFichier(argv[1], & ImgTest1 ) ;
+
     // centrer l'image
-    affImage( ImgTest1, 10, 5 ) ;
-    //affImage( ImgTest2, 25, 0 ) ;
+
+    affImage( ImgTest1, (w.ws_col/2)-(ImgTest1.largeur/2), (w.ws_row/2)-(ImgTest1.longueur/2) ) ;
+
+    //printf ("columns %d\n", w.ws_col);
+    //printf ("lines %d\n", w.ws_row);
+	scanf("%c");
+	system("clear");
+	return 0;
 }
+
