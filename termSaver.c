@@ -113,13 +113,13 @@ int main(int argol, char* argvol[]){
 					break;
 				case 1:
 
-
+					puts("blblblb dyn rand\n");
 
 
 					break;
 				case 2:
 
-
+					puts("blblblb int rand\n");
 
 
 					break;
@@ -128,8 +128,8 @@ int main(int argol, char* argvol[]){
 			}
 			break;
 		case 2://cas où le nombre d'arguments est égal à = 2
-			if (strcmp(argvol[1], "1") == 0){
-				hourDateStorage();
+			if (strcmp(argvol[1], "1") == 0){		//si la chaine de caratère du deuxième argument
+				hourDateStorage();					//exécute le screen saver statique avec une image choisie au hasard
 				typeStorage("1");
 				char fileName[80];
 				strcpy(fileName, randomSelectStaticImage());
@@ -152,12 +152,12 @@ int main(int argol, char* argvol[]){
 			}
 			else if (strcmp(argvol[1], "2") == 0){
 
-
+				puts("blblblb dyn\n");
 
 			}
 			else if (strcmp(argvol[1], "3") == 0){
 
-
+				puts("blblblb int\n");
 
 			}
 			break;

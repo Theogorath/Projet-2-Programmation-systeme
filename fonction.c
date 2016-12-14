@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "fonction.h"
-#define HISTORIQUE "historique.txt"
+#define HISTORIQUE "history.txt"
 void numberOfType(){
     // declaration et initialisation des variables
     FILE* file = NULL;
@@ -14,7 +14,7 @@ void numberOfType(){
     system("clear");//nettoyage du terminal
     file = fopen(HISTORIQUE,"r");//ouvrir le fichier historique.txt en droit de lecture et recuperer sa valeur
     if(file == NULL){//verifie si le fichier c est bien ouvert
-        printf("erreur lors de l'ouverture du fichier historique.txt");//message d erreur d ouverture du fichier
+        printf("erreur lors de l'ouverture du fichier historique.txt\n");//message d erreur d ouverture du fichier
     }else{
         while(readCharacter != EOF){//lit le fichier jusqu'au caractere de fin
             readCharacter = fgetc(file);//lit un caractere du fichier
