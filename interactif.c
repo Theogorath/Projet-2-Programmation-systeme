@@ -1,16 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <time.h>
 #include <string.h>
+#include <dirent.h>
 #include <sys/ioctl.h>
-#include "image.h"
+#include "interactif.h"
 #define MAX_LEN 80
+#define clear() printf("\033[H\033[2J")
 
 void lireFichier( char * nomFic, struct IMG * Img )
 {
-	FILE *fptr = NULL;
+    FILE *fptr = NULL;
     char buf[MAX_LEN];   // read buffer
     int i, j ;          // indice du tableau pixels
     // Test de l'ouverture
     if((fptr = fopen(nomFic,"r")) == NULL)
-	{
+    {
         fprintf(stderr,"error opening %s\n",nomFic);
         return ;
     }
@@ -29,14 +37,13 @@ void lireFichier( char * nomFic, struct IMG * Img )
     for( i = 0; i < Img->longueur ; i++ )
 	{
 		Img->pixels[i] = malloc( sizeof(int) * Img->largeur ) ;
-    }
-
+	}
     // lecture des valeurs
     for( i=0; i<Img->longueur; i++ )
     {
 		fgets( buf, MAX_LEN, fptr) ;
-        for( j=0; j < Img->largeur; j++ )
-        {
+		for( j=0; j < Img->largeur; j++ )
+		{
 			Img->pixels[i][j] = buf[2*j] ;
 		}
 	}
@@ -46,13 +53,13 @@ void affImage( struct IMG Img , int x, int y  )  // Une image, et positions X et
 {
 	int i, j, k;
 	char c ;
-	//printf("%s %d %d\n", Img.magic, Img.largeur, Img.longueur );
+	//printf("%s %d %d\n", Img.magic, Img.largeur, Img.longueur ) ;
 	// affichage du tableau :
 	// décalage vers Y
-	for( i = 0 ; i < y ; i++ ) printf("\n");
+	for( i = 0 ; i < y ; i++ ) printf("\n") ;
 	for( i=0; i< Img.longueur ; i++ )
 	{
-		for( k=0; k< x; k++ ) printf(" ");   // décalage à gche
+		for( k=0; k< x; k++ ) printf(" ") ;   // décalage à gche
 		for( j=0;j<Img.largeur; j++ )
 		{
 			c = ( Img.pixels[i][j] == '0' ) ? ' ' : '0' ;

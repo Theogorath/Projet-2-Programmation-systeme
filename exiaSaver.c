@@ -83,14 +83,11 @@ int main(int argc, char*argv[]){
 				
 				execvp("termSaver", termsaver1);
 				//puts("ecranStatique via termsaver avec parametre");
-				break;
-            //ecran dynamique parametre dynamique et argv[2]
-			case 2:
-				puts("ecranDynamique via termsaver avec parametre");
-				break;
+				break;			
             //ecran interactif parametre interactif et argv[2]
 			case 3:
-				puts("ecranInteractif via termsaver avec parametre");
+				execvp("termSaver", termsaver1);
+				//puts("ecranInteractif via termsaver avec parametre");
 				break;
             // si l argument est bizarre on c est tromper sur l'argument
 			default:

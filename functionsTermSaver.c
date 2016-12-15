@@ -8,7 +8,8 @@
 #include <dirent.h>
 #include "functionsTermSaver.h"
 
-char* randomSelectStaticImage(void){//fonction utilisée pour sélectionner une image aléatoirement pour le type statique
+char* randomSelectStaticImage(void)//fonction utilisée pour sélectionner une image aléatoirement pour le type statique
+{
 	DIR* rep = NULL;
 	struct dirent* ent = NULL;
 	rep = opendir(getenv("EXIASAVER1_PBM"));//ouvre le repertoire ou se situent les images du type statique
@@ -37,7 +38,8 @@ char* randomSelectStaticImage(void){//fonction utilisée pour sélectionner une im
 	return fileTable[randomValue];//on retourne une chaine de caractères au hasard correspondant au nom d'un des fichiers
 }
 
-int argumentsCheck(char* argvulu){//fonction pour empecher d'envoyer un mauvais parametre
+int argumentsCheck(char* argvulu)//fonction pour empecher d'envoyer un mauvais parametre
+{
 	int i = 0;
 	DIR* rep = NULL;
 	struct dirent* ent = NULL;
@@ -57,7 +59,8 @@ int argumentsCheck(char* argvulu){//fonction pour empecher d'envoyer un mauvais 
 	}
 }
 
-void hourDateStorage(void){//fonction ecrivant la date et l'heure au format jj/mm/aa hh:mm:ss; dans le fichier historique
+void hourDateStorage(void)//fonction ecrivant la date et l'heure au format jj/mm/aa hh:mm:ss; dans le fichier historique
+{
 	time_t seconds;//variable pour les secondes
 	struct tm now;//structure tm d'allias now
 	time(&seconds);
@@ -68,16 +71,34 @@ void hourDateStorage(void){//fonction ecrivant la date et l'heure au format jj/m
 	fclose(history);
 }
 
-void typeStorage(char* type){//fonction ecrivant le type de screen saver lance dans le fichier historique
+void typeStorage(char* type)//fonction ecrivant le type de screen saver lance dans le fichier historique
+{
 	FILE* history = NULL;
 	history = fopen("/home/exia/PROJET2/history.txt", "a");
 	fprintf(history, "%s;", type);
 	fclose(history);
 }
 
-void staticImageStorage(char* usedImage){//fichier ecrivant l'image utilisee pour le screen saver statique dans le fichier historique
+void staticImageStorage(char* usedImage)//fichier ecrivant l'image utilisee pour le screen saver statique dans le fichier historique
+{
 	FILE* history = NULL;
 	history = fopen("/home/exia/PROJET2/history.txt", "a");
 	fprintf(history, "%s&\n", usedImage);
+	fclose(history);
+}
+
+void sizeDynamicStorage(char* imhSize)
+{
+	FILE* history = NULL;
+	history = fopen("/home/exia/PROJET2/history.txt", "a");
+	fprintf(history, "%s&\n", imhSize);
+	fclose(history);
+}
+
+void planeCoordonatesStorage(int posX, int posY)
+{
+	FILE* history = NULL;
+	history = fopen("/home/exia/PROJET2/history.txt", "a");
+	fprintf(history, "x=%d y=%d&\n", posX, posY);
 	fclose(history);
 }
